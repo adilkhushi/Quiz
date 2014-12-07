@@ -5,19 +5,34 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
 //For Database
-// New Code
-/*var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/nodetest1');*/
+var MongoClient = require('mongodb').MongoClient
+    , format = require('util').format;
+MongoClient.connect('mongodb://127.0.0.1:27017/quiz', function(err, db) {
+    if (err) {
+        throw err;
+    }
+    else {
+        console.log("connection successful");
+        app.db = db;
+    }
+    var collection = db.collection('test_insert');
+    collection.insert({a:2}, function(err, docs) {
 
+        if (err) throw err;
+        console.log('Data inserted');
+    });
+
+});
+
+// Page paths
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var contact=require('./routes/contact');
 var about=require('./routes/about');
 var login=require('./routes/login');
 var signup=require('./routes/signup');
+var test=require('./routes/test');
 var app = express();
 
 // view engine setup
@@ -37,7 +52,8 @@ app.use('/users', users);
 app.use('/contact',contact);
 app.use('/about',about);
 app.use('/login',login);
-app.use('/signup',signup)
+app.use('/signup',signup);
+app.use('/test',test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
