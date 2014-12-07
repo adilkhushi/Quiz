@@ -16,12 +16,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/quiz', function(err, db) {
         console.log("connection successful");
         app.db = db;
     }
-    var collection = db.collection('test_insert');
-    collection.insert({a:2}, function(err, docs) {
-
-        if (err) throw err;
-        console.log('Data inserted');
-    });
+   
 
 });
 
