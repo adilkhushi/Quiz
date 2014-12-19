@@ -28,6 +28,8 @@ var about=require('./routes/about');
 var login=require('./routes/login');
 var signup=require('./routes/signup');
 var test=require('./routes/test');
+var quiz=require('./routes/quiz');
+var quizType=require('./routes/quizType');
 var app = express();
 
 // view engine setup
@@ -49,6 +51,9 @@ app.use('/about',about);
 app.use('/login',login);
 app.use('/signup',signup);
 app.use('/test',test);
+app.use('/quiz',quiz);
+app.use('/quizType',quizType);
+//app.use('/quizType/quiz',quiz);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
