@@ -35,7 +35,7 @@ router.post('/sendemail', function(req, res) {
         service: "Gmail",
         port:"465",
         auth: {
-            user: "adil.pti44@gmail.com",
+            user: "quiz.challenge44@gmail.com",
             pass: "netsol2@"
         }
     });

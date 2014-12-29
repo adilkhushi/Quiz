@@ -21,15 +21,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/quiz', function(err, db) {
 });
 
 // Page paths
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var contact=require('./routes/contact');
-var about=require('./routes/about');
-var login=require('./routes/login');
-var signup=require('./routes/signup');
-var test=require('./routes/test');
-var quiz=require('./routes/quiz');
-var quizType=require('./routes/quizType');
+
 var app = express();
 
 // view engine setup
@@ -44,6 +36,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var contact=require('./routes/contact');
+var about=require('./routes/about');
+var login=require('./routes/login');
+var signup=require('./routes/signup');
+var test=require('./routes/test');
+var quiz=require('./routes/quiz');
+var quizType=require('./routes/quizType');
+var quizIndex=require('./routes/quizIndex');
+var quizShow=require('./routes/quizShow');
+
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/contact',contact);
@@ -53,6 +59,8 @@ app.use('/signup',signup);
 app.use('/test',test);
 app.use('/quiz',quiz);
 app.use('/quizType',quizType);
+app.use('/quizIndex',quizIndex);
+app.use('/quizShow',quizShow);
 //app.use('/quizType/quiz',quiz);
 
 // catch 404 and forward to error handler
