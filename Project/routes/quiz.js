@@ -89,8 +89,8 @@ router.get('/previous', function(req, res) {
 
 router.post('/quiz/challenge', function(req, res) {
 
-    var qId=req.body.questionId;
-    console.log("id :"+qId);
+//    var qId=req.body.questionId;
+//    console.log("id :"+qId);
     var quizArray=req.body.quizArray;
     console.log(quizArray);
     var document = {question:questionArray};
