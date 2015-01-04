@@ -48,6 +48,7 @@ var quiz=require('./routes/quiz');
 var quizType=require('./routes/quizType');
 var quizIndex=require('./routes/quizIndex');
 var quizShow=require('./routes/quizShow');
+var acknowledge=require('./routes/acknowledge');
 
 
 app.use('/', routes);
@@ -61,6 +62,7 @@ app.use('/quiz',quiz);
 app.use('/quizType',quizType);
 app.use('/quizIndex',quizIndex);
 app.use('/quizShow',quizShow);
+app.use('/acknowledge',acknowledge);
 //app.use('/quizType/quiz',quiz);
 
 // catch 404 and forward to error handler
