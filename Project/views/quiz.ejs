@@ -110,9 +110,9 @@
                 //document.getElementById("Answer1").value;
                 var answer2 = $("#Answer2 input").val();
                 //document.getElementById("Answer2").value;
-                var answer3 = $("#Answer3 input").val();
+                var answer3_temp = $("#Answer3 input").val();
                 //document.getElementById("Answer3").value;
-                var answer4 = $("#Answer4 input").val();
+                var answer4_temp = $("#Answer4 input").val();
                 //document.getElementById("Answer4").value;
                 var correctAnswer = $("#div_radio input[type=radio]:checked").val();
                 console.log(correctAnswer);
@@ -121,29 +121,38 @@
                 //document.getElementById("quizName").value;
                 var quizType = $("#quizType").val();
                 //document.getElementById("quizType").value;
+                var QuizName = $("#q_Name").text();
+                var QuizType = $("#q_Type").text();
+
+                if (answer3_temp == undefined)
+                answer3 ="";
+                else
+                answer3 = answer3_temp;
+
+                if (answer4_temp == undefined)
+                answer4 = "";
+                else
+                answer4 = answer4_temp;
+
 
                 question = {
-                    "question": question_dsc,
-                    "answer1": answer1,
-                    "answer2": answer2,
-                    "answer3": answer3,
-                    "answer4": answer4,
-                    "correctAnswer": correctAnswer
-                };
-                if (answer3 == undefined) {
-                    question.answer3 ="";
-                }
-                if (answer4 == undefined) {
-                    question.answer4 = "";
-                }
-
+                    "QuizName": QuizName,
+                    "QuizType": QuizType,
+                    "Question1": {
+                        "Question": question_dsc,
+                        "Answer1": answer1,
+                        "Answer2": answer2,
+                        "Answer3": answer3,
+                        "Answer4": answer4,
+                        "correctAnswer": correctAnswer
+                    }
+                } ;
             }
 
-            var QuizName = $("#q_Name").text();
-            var QuizType = $("#q_Type").text();
-           // alert(QuizName+QuizType);
-            questionArray.push(QuizName);
-            questionArray.push(QuizType);
+
+            // alert(QuizName+QuizType);
+            //questionArray.push(QuizName);
+            //questionArray.push(QuizType);
             questionArray.push(question);
             $("#q_id").text(q_id);
             $("#question").val("");
@@ -152,6 +161,7 @@
             ans=0;
 
             $("#quizArray").val(JSON.stringify(questionArray));
+
 
 
         }
@@ -186,64 +196,65 @@
 
         <div class="pageheader" style="margin-top: 50px;">
 
-                        <div class="container">
+            <div class="container">
 
-                            <div class="row clearfix introbar" id="startedit">
-                                <div class="col12">
-                                    <div class="contentbox createquiz">
-                                        <div>
-                                            <h2>Quiz Name : <div id="q_Name" style="display:inline"><%= qn%></div></h2>
-                                            <h2>Quiz Type : <div id="q_Type" style="display:inline"><%= qt%></div></h2><br>
+                <div class="row clearfix introbar" id="startedit">
+                    <div class="col12">
+                        <div class="contentbox createquiz">
+                            <div>
+                                <h2>Quiz Name : <div id="q_Name" style="display:inline"><%= qn%></div></h2>
+                                <h2>Quiz Type : <div id="q_Type" style="display:inline"><%= qt%></div></h2><br>
 
-                                        </div>
-                                        <h2>Question <div id="q_id" style="display:inline"><%= questionId%></div></h2>
-                                        <form id="quiz" name="quiz" action="" method="post">
-                                            <fieldset>
-                                                <div><label for="EditQuestionFormModel_question">What is the question?</label>
-                                                    <input placeholder="What is the question?" id="question" name="question" type="text"  tabindex="1"></div>
-                                            </fieldset>
-                                            <fieldset class="createanswers">
-                                                <h2>Answers</h2>
-                                                <input type="hidden" name="quizName" id="quizName" value=<%= qn%> />
-                                                <input type="hidden" name="quizType" id="quizType" value=<%= qt%> />
-
-                                                <div id="my_div">
-                                                    <!--<br>-->
-                                                </div>
-
-                                                <div>
-                                                    <input  type="button" value="Add" id="bt_add">
-                                                    <input  type="button" value="Remove" id="bt_remove">
-
-                                                </div>
-
-
-                                                <h2>Correct Answer</h2>
-                                                <div id="div_radio">
-                                                    <!--<br>-->
-
-                                                </div>
-
-                                               </fieldset>
-                                            <div class="row prevnext">
-                                                <input class="prev" name="new" type="button" value=" Add question" onclick="return checkform();">
-                                                <!--<input class="prev" name="prev" type="submit" value="Previous Question" onclick="javascript: form.action='quiz/previous';">-->
-                                    </div>
-
-
-
-                                        </form>
-                                        <form method="post" action="./challenge">
-                                            <div class="row playsave">
-                                                <p class="handwritten">Done creating your quiz? Now its time to Challenge Your Friends.</p>
-                                                <input type="hidden" name="quizArray" id="quizArray" value="" />
-                                                <input class="save" name="Challenge Friend" type="submit" value="Challenge Friend" >
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
+                            <h2>Question <div id="q_id" style="display:inline"><%= questionId%></div></h2>
+                            <form id="quiz" name="quiz" action="" method="post">
+                                <fieldset>
+                                    <div><label for="EditQuestionFormModel_question">What is the question?</label>
+                                        <input placeholder="What is the question?" id="question" name="question" type="text"  tabindex="1"></div>
+                                </fieldset>
+                                <fieldset class="createanswers">
+                                    <h2>Answers</h2>
+
+                                    <input type="hidden" name="quizName" id="quizName" value=<%= qn%> />
+                                    <input type="hidden" name="quizType" id="quizType" value=<%= qt%> />
+
+                                    <div id="my_div">
+                                        <!--<br>-->
+                                    </div>
+
+                                    <div>
+                                        <input  type="button" value="Add" id="bt_add">
+                                        <input  type="button" value="Remove" id="bt_remove">
+
+                                    </div>
+
+
+                                    <h2>Correct Answer</h2>
+                                    <div id="div_radio">
+                                        <!--<br>-->
+
+                                    </div>
+
+                                </fieldset>
+                                <div class="row prevnext">
+                                    <input class="prev" name="new" type="button" value=" Add question" onclick="return checkform();">
+                                    <!--<input class="prev" name="prev" type="submit" value="Previous Question" onclick="javascript: form.action='quiz/previous';">-->
+                                </div>
+
+
+
+                            </form>
+                            <form method="post" action="./challenge">
+                                <div class="row playsave">
+                                    <p class="handwritten">Done creating your quiz? Now its time to Challenge Your Friends.</p>
+                                    <input type="text" name="quizArray" id="quizArray" value="" />
+                                    <input class="save" name="Challenge Friend" type="submit" value="Challenge Friend" >
+                                </div>
+                            </form>
                         </div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>

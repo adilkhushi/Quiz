@@ -16,6 +16,7 @@
     <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src='/javascripts/jquery-1.8.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/jquery.kwicks.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery.validate.js' type='text/javascript'></script>
     <script type='text/javascript'>
         $(function() {
             $('.kwicks').kwicks({
@@ -24,7 +25,68 @@
                 behavior: 'menu'
             });
         });
+
+
+        // validate signup form on keyup and submit
+        $().ready(function() {
+            // validate the comment form when it is submitted
+            //$("#contactform").validate();
+
+            // validate signup form on keyup and submit
+            $("#contactform").validate({
+                rules: {
+                    name: "required",
+                    password: {
+                        required: true,
+                        minlength: 7
+                    },
+                    repassword: {
+                        required: true,
+                        equalTo: "#password"
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    topic: {
+                        required: "#newsletter:checked",
+                        minlength: 2
+                    },
+                    agree: "required"
+                },
+                messages: {
+                    name: "Please enter your firstname",
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 7 characters long"
+                    },
+                    repassword: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 7 characters long",
+                        equalTo: "Please enter the same password as above"
+                    },
+                    email: "Please enter a valid email address",
+                    agree: "Please accept our policy"
+                }
+            });
+
+
+        });
+
     </script>
+    <style>
+        #contactform {
+            width: 670px;
+        }
+        #contactform label.error {
+            margin-left: 10px;
+            width: auto;
+            display: inline;
+            color: red;
+
+        }
+    </style>
+
 </head>
 <body class="bg">
 <div class="header-bg">
@@ -54,7 +116,7 @@
 
             <form id="contactform" method="POST" action="/signup/signupok">
                 <p class="contact"><label for="name">Name</label></p>
-                <input id="name" name="name" placeholder="Full name" required="" tabindex="1" type="text">
+                <input id="name" name="name" placeholder="Full name"  tabindex="1" type="text" required>
 
                 <p class="contact"><label for="email">Email</label></p>
                 <input id="email" name="email" placeholder="example@domain.com" required="" tabindex="2"type="email">
@@ -63,7 +125,7 @@
                 <input id="username" name="username" placeholder="username" required="" tabindex="2" type="text">
 -->
                 <p class="contact"><label for="phone">Mobile phone</label></p>
-                <input id="phone" name="phone" placeholder="phone number" required="" tabindex="3" type="text"> <br>
+                <input id="phone" name="phone" placeholder="phone number"  tabindex="3" type="text"> <br>
 
                 <p class="contact"><label for="password">Create a password</label></p>
                 <input type="password" id="password" name="password" required="" tabindex="4">
@@ -71,9 +133,8 @@
                 <input type="password" id="repassword" name="repassword" required="" tabindex="5">
                 </br>
 
-                <input type="radio" name="Gender" value="Male" checked="checked">Male
-                &nbsp;&nbsp;<input type="radio" name="Gender" value="Female">Female
-                &nbsp;&nbsp;<input type="radio" name="Gender" value="Other">Other
+                <input type="radio" name="gender" value="Male" checked="checked">Male
+                &nbsp;&nbsp;<input type="radio" name="gender" value="Female">Female
 
                 </br>
                 </br>

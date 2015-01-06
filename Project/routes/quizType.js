@@ -21,12 +21,27 @@ router.post('/challenge', function(req, res) {
     console.log("id :"+qId);
     var quizArray=req.body.quizArray;
     console.log(quizArray);
-    var document = {Quiz:quizArray};
+
+
+
+   //var document = {Quiz:quizArray};
+    //var document=[quizArray];
+    //document = [{"QuizName":"abc","QuizType":"Economics","Question1":{"Question":"A","Answer1":"A1","Answer2":"A2","Answer3":"","Answer4":""}}];
+    document = JSON.parse(quizArray);
+    console.log(document);
+
+
+
+
     var quiz=req.app.db.collection("quiz");
-    quiz.insert(document, function(err, db){
+
+  quiz.insert(document, function(err, db){
         if (err) throw err;
         console.log('Data inserted');
     });
+
+
+
 
 
     res.render('challenge', { title: 'Login' });

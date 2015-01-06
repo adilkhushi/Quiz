@@ -22,7 +22,7 @@ router.post('/signupok',function(req,res){
     var gender=req.body.gender;
 
     console.log(name, email, phone, pwd, rePwd, gender);
-    var document = {name: name, email: email, phone : phone,password : pwd, repassword :rePwd,gender :gender };
+    var document = {name: name, email: email, phone : phone,password : pwd,gender :gender };
     var users=req.app.db.collection("users");
     users.insert(document, function(err, db){
                 if (err) throw err;
