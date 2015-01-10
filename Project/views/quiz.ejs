@@ -78,6 +78,9 @@
         var questionArray=[];
        //questionArray.push();
 
+        var quizObject={};
+        quizObject.Questions=[];
+
         function checkform()
         {
 
@@ -135,7 +138,7 @@
                 answer4 = answer4_temp;
 
 
-                question = {
+                /*question = {
                     "QuizName": QuizName,
                     "QuizType": QuizType,
                     "Question1": {
@@ -146,21 +149,38 @@
                         "Answer4": answer4,
                         "correctAnswer": correctAnswer
                     }
+                } ;*/
+
+                question = {
+
+                        "Question": question_dsc,
+                        "Answer1": answer1,
+                        "Answer2": answer2,
+                        "Answer3": answer3,
+                        "Answer4": answer4,
+                        "correctAnswer": correctAnswer
+
                 } ;
+
+                quizObject.QuizName=QuizName;
+                quizObject.QuizType=QuizType;
+
             }
 
 
             // alert(QuizName+QuizType);
             //questionArray.push(QuizName);
             //questionArray.push(QuizType);
-            questionArray.push(question);
+            //questionArray.push(question);
+
+            quizObject.Questions.push(question);
             $("#q_id").text(q_id);
             $("#question").val("");
             $("#my_div").html("");
             $("#div_radio").html("");
             ans=0;
 
-            $("#quizArray").val(JSON.stringify(questionArray));
+            $("#quizArray").val(JSON.stringify(quizObject));
 
 
 

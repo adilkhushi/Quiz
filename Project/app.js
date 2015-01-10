@@ -25,6 +25,9 @@ MongoClient.connect('mongodb://127.0.0.1:27017/quiz', function(err, db) {
 
 var app = express();
 
+var mongojs = require('mongojs');
+var ObjectId = mongojs.ObjectId;
+app.ObjectId=ObjectId;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -54,6 +57,7 @@ var acknowledge=require('./routes/acknowledge');
 var allQuiz=require('./routes/allQuiz');
 var userListing=require('./routes/userListing');
 var quizsolve=require('./routes/quizsolve');
+var logout=require('./routes/logout');
 
 
 app.use('/', routes);
@@ -71,6 +75,8 @@ app.use('/acknowledge',acknowledge);
 app.use('/allQuiz',allQuiz);
 app.use('/userListing',userListing);
 app.use('/quizsolve',quizsolve);
+app.use('/logout',logout);
+
 
 //app.use('/quizType/quiz',quiz);
 
