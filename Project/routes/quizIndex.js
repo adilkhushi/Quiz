@@ -3,7 +3,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('quizIndex', { title: 'Express' });
+    sess = req.session;
+    console.log(sess.userId);
+    if(sess.userId)
+    {
+        res.render('quizIndex');
+    }
+    else{
+        res.redirect('/login');
+    }
+
 });
 
 router.get('/quizType', function(req, res) {

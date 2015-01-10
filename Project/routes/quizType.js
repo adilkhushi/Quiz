@@ -26,7 +26,7 @@ router.post('/challenge', function(req, res) {
 
    //var document = {Quiz:quizArray};
     //var document=[quizArray];
-    //document = [{"QuizName":"abc","QuizType":"Economics","Question1":{"Question":"A","Answer1":"A1","Answer2":"A2","Answer3":"","Answer4":""}}];
+   // document = [{"QuizName":"abc","QuizType":"Economics","Question1":{"Question":"A","Answer1":"A1","Answer2":"A2","Answer3":"","Answer4":""}}];
     document = JSON.parse(quizArray);
     console.log(document);
 
