@@ -29,11 +29,8 @@
 
         // validate signup form on keyup and submit
         $().ready(function() {
-            // validate the comment form when it is submitted
-            //$("#contactform").validate();
 
-            // validate signup form on keyup and submit
-            $("#contactform").validate({
+            $("#signupform").validate({
                 rules: {
                     name: "required",
                     password: {
@@ -75,10 +72,10 @@
 
     </script>
     <style>
-        #contactform {
+        #signupform {
             width: 670px;
         }
-        #contactform label.error {
+        #signupform label.error {
             margin-left: 10px;
             width: auto;
             display: inline;
@@ -109,7 +106,7 @@
         <div  class="form">
             <img src="/images/registration.png" alt="">
 
-            <form id="contactform" method="POST" action="/signup/signupok">
+            <form id="signupform" method="POST" action="/signup/signupok">
                 <p class="contact"><label for="name">Name</label></p>
                 <input id="name" name="name" placeholder="Full name"  tabindex="1" type="text" required>
 
@@ -133,13 +130,6 @@
 
                 </br>
                 </br>
-
-                <!--<select class="select-style gender" name="gender">-->
-                <!--&lt;!&ndash;<option value="select">I am ...</option>&ndash;&gt;-->
-                <!--<option value="m">Male</option>-->
-                <!--<option value="f">Female</option>-->
-                <!--<option value="others">Other</option>-->
-                <!--</select><br><br>-->
 
 
                 <input class="buttom" name="submit" id="submit" tabindex="6" value="Sign me up!" type="submit">
