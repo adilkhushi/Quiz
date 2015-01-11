@@ -38,21 +38,24 @@ router.post('/challenge', function(req, res) {
   quiz.insert(document, function(err, db){
         if (err) throw err;
         console.log('Data inserted');
+
+        console.log(document['_id']);
+
     });
 
 
 
 
 
-    res.render('challenge', { title: 'Login' });
+    res.render('challenge', { qid: document['_id'] });
 
 });
 
 router.post('/acknowledge', function(req, res) {
 
-    var email=req.body.email;
-    console.log(email);
-
+    var email=req.query.email;
+    var qid=req.query.qid;
+console.log("ppppppppppppppppppp");
     var smtpTransport = nodemailer.createTransport("SMTP",{
         service: "Gmail",
         port:"465",
@@ -66,15 +69,15 @@ router.post('/acknowledge', function(req, res) {
         from: 'adil_44@live.com', // sender address
         to: email, // list of receivers
         subject: 'Quiz Challenge', // Subject line
-        text: 'Hello world ✔', // plaintext body
-        html: '<b>Hello world ✔</b>' // html body
+        //text: 'Hello world ✔', // plaintext body
+        html: '<b>You have been given quiz challenge</b><br/><br/>Click here to attemp quiz<br/><br/>http://localhost:3000/quizsolve?qid='+qid
     };
 
 // send mail with defined transport object
     smtpTransport.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error);
-            res.render('signup');
+            res.redirect('/login');
         } else {
             console.log('Message sent: ' + info.response);
             res.render('acknowledge');

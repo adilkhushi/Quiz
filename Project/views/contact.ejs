@@ -73,7 +73,12 @@
                 <a href="/"><img src="/images/logoquiz1.jpg"> </a>
             </div>
             <div class="menu">
-                <% include menu_header %>
+                <ul class='kwicks kwicks-horizontal'>
+                    <li><a href="/quizIndex">Create Quiz</a></li>
+                    <li><a href="/quizShow">Take Quiz</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/login">Login</a></li>
+                </ul>
             </div>
             <div class="clear"></div>
         </div>
@@ -84,24 +89,26 @@
         <div class="section group">
 
             <div class="col span_2_of_3">
+                <h3 style="margin-left: 250px;"><%= emailMsg %></h3>
                 <div class="contact-form">
                     <h3>Contact Us</h3>
-                    <form method="post" id="contactusform" action="/contact/sendemail">
+
+                    <form method="post" id="contactusform" action="/contact">
                         <div>
                             <span><label>NAME</label></span>
-                            <span><input name="userName" type="text" class="textbox"></span>
+                            <span><input name="userName" id="userName" type="text" class="textbox"></span>
                         </div>
                         <div>
                             <span><label>E-MAIL</label></span>
-                            <span><input name="userEmail" type="text" class="textbox"></span>
+                            <span><input name="userEmail" id="userEmail" type="text" class="textbox"></span>
                         </div>
                         <div>
                             <span><label>MOBILE</label></span>
-                            <span><input name="userPhone" type="text" class="textbox"></span>
+                            <span><input name="userPhone" id="userPhone" type="text" class="textbox"></span>
                         </div>
                         <div>
                             <span><label>SUBJECT</label></span>
-                            <span><textarea name="userMsg"> </textarea></span>
+                            <span><textarea name="userMsg" id="userMsg"> </textarea></span>
                         </div>
                         <div>
                             <span class="button-wrap"><input type="submit" value="Send"></span>

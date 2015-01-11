@@ -1,16 +1,21 @@
-/**
- * Created by KHUSHI on 11/25/2014.
- */
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('contact', { title: 'Express' });
+    res.render('contact', { emailMsg: '' });
 });
 
-router.post('/sendemail', function(req, res) {
+router.post('/', function(req, res) {
+
+    var userName=req.body.userName;
+    var userEmail=req.body.userEmail;
+    var userPhone=req.body.userPhone;
+    var userMsg=req.body.userMsg;
+
+
+
 
     var smtpTransport = nodemailer.createTransport("SMTP",{
         service: "Gmail",
@@ -21,22 +26,26 @@ router.post('/sendemail', function(req, res) {
         }
     });
 
+
+console.log('Sender Name :<b>'+userName+'</b><br/>Sender Email :<b>'+userEmail+'</b><br/>Sender Phone :<b>'+userPhone+'</b><br/>Text :<br/><br/>'+userMsg);
+
     var mailOptions = {
         from: 'adil_44@live.com', // sender address
-        to: 'adil.khushi@ymail.com', // list of receivers
-        subject: 'Hello ✔', // Subject line
-        text: 'Hello world ✔', // plaintext body
-        html: '<b>Hello world ✔</b>' // html body
+        to: 'waqas996@gmail.com', // list of receivers
+        subject: userName+' contact via quiz challenger', // Subject line
+        //text: 'Hello world ✔', // plaintext body
+        //html: '<b>Hello world ✔</b>' // html body
+        html: 'Sender Name :<b>'+userName+'</b><br/>Sender Email :<b>'+userEmail+'</b><br/>Sender Phone :<b>'+userPhone+'</b><br/>Text :<br/><br/>'+userMsg
     };
 
 // send mail with defined transport object
     smtpTransport.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error);
-            res.render('index');
+            res.render('contact', { emailMsg: 'Email could not sent' });
         } else {
             console.log('Message sent: ' + info.response);
-            res.render('login');
+            res.render('contact', { emailMsg: 'Email has been sent' });
         }
     });
 

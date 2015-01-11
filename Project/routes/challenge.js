@@ -4,11 +4,15 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('challenge', { title: 'Express' });
+
+    console.log(qid);
+
 });
 
 router.post('/acknowledge', function(req, res) {
 
     var email=req.query.email;
+    var qid=req.query.qid;
 
     var smtpTransport = nodemailer.createTransport("SMTP",{
         service: "Gmail",
@@ -22,9 +26,10 @@ router.post('/acknowledge', function(req, res) {
     var mailOptions = {
         from: 'adil_44@live.com', // sender address
         to: email, // list of receivers
-        subject: 'Hello ✔', // Subject line
-        text: 'Hello world ✔', // plaintext body
-        html: '<b>Hello world ✔</b>' // html body
+        subject: 'You have been given a challenge', // Subject line
+        //text: 'Hello world ✔', // plaintext body
+       // html: '<b>Hello world ✔</b>' // html body
+        html: '<b>You have been given quiz challenge</b><br/><br/>Click here to attemp quiz<br/><br/>http://localhost:3000/quizsolve?qid='+qid
     };
 
 // send mail with defined transport object

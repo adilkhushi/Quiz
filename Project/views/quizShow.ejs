@@ -1,8 +1,7 @@
-
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>The Knowledge Website Template | Contact :: w3layouts</title>
+    <title>Quiz Challenger</title>
     <meta charset="UTF-8">
 
 
@@ -79,7 +78,9 @@
 
                             <form id="quizIndex" method="get">
                                 <fieldset>
-
+                                    <% quizList.forEach(function(quizList) { %>
+                                   <span> <a href="http://localhost:3000/quizsolve?qid=<%= quizList._id %>" style=color:cornflowerblue><%= quizList.QuizName %></a></span><br />
+                                    <% }); %>
                                 </fieldset>
 
 
