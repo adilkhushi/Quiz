@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+</html><!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Quiz Challenger</title>
+    <meta charset="UTF-8">
+
+
+
+    <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
+
+    <link rel="stylesheet" href="../stylesheets/style1.css" media="screen" type="text/css" />
+    <!--<link rel="stylesheet" type="text/css" href="./quiz - Question 1_files/css">-->
+    <!--<link rel="stylesheet" type="text/css" href="./quiz - Question 1_files/css(1)">-->
+    <!--<link rel="stylesheet" type="text/css" href="./quiz - Question 1_files/css(2)">-->
+    <link rel="shortcut icon" href="http://www.onlinequizcreator.com/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/A.styles.css.pagespeed.cf.xV6htyUXH4.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src='/javascripts/jquery-1.8.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery.kwicks.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+
+
+        var quizArray=null;
+        $(function() {
+            $('.kwicks').kwicks({
+                maxSize : 250,
+                spacing : 5,
+                behavior: 'menu'
+            });
+            var quizArrayJSON=$("#obj").val();
+            quizArray=JSON.parse(quizArrayJSON);
+            window.quizArray.TotalCorrectAnswers = 0;
+            window.quizArray.TotalQuestions = quizArray.Questions.length;
+        });
+
+        function sendres(){
+            document.forms["resForm"].submit();
+        }
+
+        $(document).ready(function(){
+
+            nxtQuestionAnswers(0);
+
+        });
+        //var answerArray=[];
+        //answerArray.push();
+        function nxtQuestionAnswers(j){
+
+            //quizArray.Questions[1].Question
+            quesnumber = j;
+            quesnumbertoshow = j+1;
+           // alert(quizArray.Questions[1].Question)
+
+            $("#formData").html("<div id='questionText'>Question"+quesnumbertoshow+": "+quizArray.Questions[j].Question);
+            $("#formData").append('</div><br/><br/>');
+            $("#formData").append('<input type="radio" name="Answer_Selected" id="Answer_Selected1" value="Answer1"/>'+quizArray.Questions[j].Answer1);
+            $("#formData").append('<br/><br/>');
+            $("#formData").append('<input type="radio" name="Answer_Selected" id="Answer_Selected2" value="Answer2"/>'+quizArray.Questions[j].Answer2);
+            if(quizArray.Questions[j].Answer3!="") {
+                $("#formData").append('<br/><br/>');
+                $("#formData").append('<input type="radio" name="Answer_Selected" id="Answer_Selected3" value="Answer3"/>' + quizArray.Questions[j].Answer3);
+            }
+            if(quizArray.Questions[j].Answer4!="") {
+                $("#formData").append('<br/><br/>');
+                $("#formData").append('<input type="radio" name="Answer_Selected" id="Answer_Selected4" value="Answer4"/>' + quizArray.Questions[j].Answer4);
+            }
+
+
+
+            //$("#Answer_Selected4_Text").html(quizArray.Questions[j].Answer4);
+            //$("input:checked").removeAttr("checked");
+        }
+
+var quesi = 0;
+        function NxtQuestion(){
+            var answer_selected_by_user;
+            var radios = document.getElementById('quizType').elements['Answer_Selected'];
+            for (var i=0, len=radios.length; i<len; i++) {
+                if ( radios[i].checked ) {
+                    answer_selected_by_user = radios[i].value;
+                    break;
+                }
+            }
+
+            if(answer_selected_by_user == "" || answer_selected_by_user==undefined)
+            {
+                alert("Please Enter Answer");
+                return false;
+            }
+            var correctAnswer = $("#correctAnswer").val();
+
+            //alert(quizArray.Questions[1].Question)
+
+            //window.quizArray.TotalCorrectAnswers = window.quizArray.TotalCorrectAnswers+2;
+            //alert(quizArray.TotalCorrectAnswers);
+            if(answer_selected_by_user==quizArray.Questions[quesi].correctAnswer)
+            window.quizArray.TotalCorrectAnswers = window.quizArray.TotalCorrectAnswers+1;
+
+
+            quesi++;
+            if(quizArray.TotalQuestions==quesi)//end of questions
+            {
+                $("#allFormData").html("");
+                //$("#headingData").html("Test Is Completed</br></br>Total Question = "+quizArray.TotalQuestions+"</br></br>Correct Answers = "+quizArray.TotalCorrectAnswers+"<br\><br\> <a href='#' onclick=sendres() style='color:blue'>Send Result To Friend</a>");
+                $("#headingData").html("Test Is Completed</br></br>Total Question = "+quizArray.TotalQuestions+"</br></br>Correct Answers = "+quizArray.TotalCorrectAnswers);
+                $("#totalQues").val(quizArray.TotalQuestions);
+                $("#CorrectQues").val(quizArray.TotalCorrectAnswers);
+                //$("#headingData").html("Test Is Completed</br></br>Total Question = "+quizArray.TotalQuestions+"</br></br>Correct Answers = "+quizArray.TotalCorrectAnswers);
+
+            }
+
+            //alert(quesi);
+            nxtQuestionAnswers(quesi);
+        }
+
+    </script>
+
+</head>
+<body class="bg">
+<div class="header-bg">
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <a href="/"><img src="/images/logoquiz1.jpg"> </a>
+            </div>
+            <div class="menu">
+                <% include menu_header %>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="navbar">
+    <div class="wrapper clearfix">
+        <nav class="langswitch">
+        </nav>
+
+
+        <div class="pageheader" style="margin-top: 50px;">
+
+            <div class="container">
+
+                <div class="row clearfix introbar" id="startedit">
+                    <div class="col12">
+                        <div class="contentbox createquiz">
+                            <h3 id="headingData1" style="font-weight: bold">Challenger Name : <b><%=senderName%></b>  </br>Challenger Email : <b><%=senderEmail%></b> </br></h3></br>
+                            <h3 id="headingData">Please Select Correct Answer</h3></br>
+
+
+
+
+                               <span id="allFormData">
+
+
+                                   <form id="resForm" action="/sendquiezresult" method="POST">
+
+
+                                       <input type="hidden" id="totalQues" value=""/>
+                                       <input type="hidden" id="CorrectQues" value=""/>
+                                       <input type="hidden" id="wrongQues" value=""/>
+                                       <input type="hidden" id="sendeerEmail" name="sendeerEmail" value="<%=senderEmail%>"/>
+
+
+                                   </form>
+                            <form id="quizType" action="/quizsolve" method="POST">
+
+                                <div id="formData">
+
+                                </div>
+
+
+
+
+
+
+                                <div class="row prevnext"><input class="new" name="nextQuestion" id="nextQuestion" type="button" value="Next" onclick="NxtQuestion()"  style="float: right"></div>
+
+
+
+                            </form>
+
+
+
+                                   <% quiz.forEach(function(quiz) { %>
+                                   <input type="hidden" id="obj" value="<%=JSON.stringify(quiz)%>"/>
+
+
+                                   <% }); %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+<% include footer %>
