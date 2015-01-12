@@ -126,6 +126,7 @@
                 //document.getElementById("quizType").value;
                 var QuizName = $("#q_Name").text();
                 var QuizType = $("#q_Type").text();
+                var uid = $("#userId").val();
 
                 if (answer3_temp == undefined)
                 answer3 ="";
@@ -164,6 +165,7 @@
 
                 quizObject.QuizName=QuizName;
                 quizObject.QuizType=QuizType;
+                quizObject.SenderId=uid;
 
             }
 
@@ -231,6 +233,7 @@
 
                                     <input type="hidden" name="quizName" id="quizName" value=<%= qn%> />
                                     <input type="hidden" name="quizType" id="quizType" value=<%= qt%> />
+                                    <input type="hidden" name="userId" id="userId" value=<%=uid%> />
 
                                     <div id="my_div">
                                         <!--<br>-->

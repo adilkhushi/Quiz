@@ -11,7 +11,8 @@ router.post('/quiz', function(req, res) {
 
     var quizName = req.body.quizname;
     var quizType = req.body.quizType;
-    res.render('quiz',{qn:quizName,qt:quizType,questionId:"1"});
+    var uid = req.session.userId;
+    res.render('quiz',{qn:quizName,qt:quizType,questionId:"1",uid:uid});
 
 });
 
@@ -21,7 +22,6 @@ router.post('/challenge', function(req, res) {
     console.log("id :"+qId);
     var quizArray=req.body.quizArray;
     console.log(quizArray);
-
 
 
    //var document = {Quiz:quizArray};
