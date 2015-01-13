@@ -31,12 +31,23 @@ console.log('Sender Name :<b>'+userName+'</b><br/>Sender Email :<b>'+userEmail+'
 
     var mailOptions = {
         from: 'adil_44@live.com', // sender address
-        to: 'waqas996@gmail.com', // list of receivers
+        to: 'quiz.challenge44@gmail.com', // list of receivers
         subject: userName+' contact via quiz challenger', // Subject line
         //text: 'Hello world ✔', // plaintext body
         //html: '<b>Hello world ✔</b>' // html body
         html: 'Sender Name :<b>'+userName+'</b><br/>Sender Email :<b>'+userEmail+'</b><br/>Sender Phone :<b>'+userPhone+'</b><br/>Text :<br/><br/>'+userMsg
     };
+
+       var mailOptions1 = {
+        from: 'adil_44@live.com', // sender address
+        to: userEmail, // list of receivers
+        subject: userName+' contact via quiz challenger', // Subject line
+        //text: 'Hello world ✔', // plaintext body
+        //html: '<b>Hello world ✔</b>' // html body
+        html: 'Sender Name :<b>'+"Quiz Challenger Team"+'</b><<br/>Message :<b>'+"Our representative will contact you soon"
+    };
+
+
 
 // send mail with defined transport object
     smtpTransport.sendMail(mailOptions, function(error, info) {
@@ -46,6 +57,16 @@ console.log('Sender Name :<b>'+userName+'</b><br/>Sender Email :<b>'+userEmail+'
         } else {
             console.log('Message sent: ' + info.response);
             res.render('contact', { emailMsg: 'Email has been sent' });
+        }
+    });
+
+    smtpTransport.sendMail(mailOptions1, function(error, info) {
+        if (error) {
+            console.log(error);
+
+        } else {
+            console.log('Message sent: ' + info.response);
+
         }
     });
 

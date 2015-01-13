@@ -114,7 +114,7 @@ var quesi = 0;
             if(quizArray.TotalQuestions==quesi)//end of questions
             {
                 $("#allFormData").html("");
-                //$("#headingData").html("Test Is Completed</br></br>Total Question = "+quizArray.TotalQuestions+"</br></br>Correct Answers = "+quizArray.TotalCorrectAnswers+"<br\><br\> <a href='#' onclick=sendres() style='color:blue'>Send Result To Friend</a>");
+                $("#headingData").html("Test Is Completed</br></br>Total Question = "+quizArray.TotalQuestions+"</br></br>Correct Answers = "+quizArray.TotalCorrectAnswers+"<br\><br\> <a href='#' onclick=sendres() style='color:blue'>Send Result To Friend</a>");
                 $("#headingData").html("Test Is Completed</br></br>Total Question = "+quizArray.TotalQuestions+"</br></br>Correct Answers = "+quizArray.TotalCorrectAnswers);
                 $("#totalQues").val(quizArray.TotalQuestions);
                 $("#CorrectQues").val(quizArray.TotalCorrectAnswers);

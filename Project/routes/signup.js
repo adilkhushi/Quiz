@@ -31,7 +31,7 @@ router.post('/signupok',function(req,res){
             });
 
 
-    res.render('index');
+    res.render('quizIndex');
 
 });
 
